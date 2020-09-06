@@ -4,132 +4,136 @@ import java.util.Objects;
 
 public class Job {
 
-    private int id;
-    private static int nextId = 1;
+   private static final String DATA_NOT_AVAILABLE = "Data not available";
+   private static final String EMPTY = "";
+   private int id;
+   private static int nextId = 1;
 
-    private String name;
-    private Employer employer;
-    private Location location;
-    private PositionType positionType;
-    private CoreCompetency coreCompetency;
+   private String name;
+   private Employer employer;
+   private Location location;
+   private PositionType positionType;
+   private CoreCompetency coreCompetency;
 
-    // TODO: Add two constructors - one to initialize a unique ID and a second to initialize the
-    //  other five fields. The second constructor should also call the first in order to initialize
-    //  the 'id' field.
-    public Job(){
-        id = nextId;
-        nextId++;
-    }
+   // TODO: Add two constructors - one to initialize a unique ID and a second to initialize the
+   //  other five fields. The second constructor should also call the first in order to initialize
+   //  the 'id' field.
+   public Job() {
+      id = nextId;
+      nextId++;
+   }
 
-    public Job(String name, Employer employer, Location location, PositionType positionType,
-               CoreCompetency coreCompetency) {
-        this();
-        this.name = name;
-        this.employer = employer;
-        this.location = location;
-        this.positionType = positionType;
-        this.coreCompetency = coreCompetency;
-    }
+   public Job(String name, Employer employer, Location location, PositionType positionType,
+              CoreCompetency coreCompetency) {
+      this();
+      this.name = name;
+      this.employer = employer;
+      this.location = location;
+      this.positionType = positionType;
+      this.coreCompetency = coreCompetency;
+   }
 
-    // TODO: Add custom equals and hashCode methods. Consider two Job objects "equal" when their id fields
-    //  match.
+   // TODO: Add custom equals and hashCode methods. Consider two Job objects "equal" when their id fields
+   //  match.
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Job job = (Job) o;
-        return id == job.id;
-    }
+   @Override
+   public boolean equals(Object o) {
+      if (this == o) return true;
+      if (o == null || getClass() != o.getClass()) return false;
+      Job job = (Job) o;
+      return id == job.id;
+   }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
-    }
-
-
-    // TODO: Add getters for each field EXCEPT nextId. Add setters for each field EXCEPT nextID
-    //  and id.
+   @Override
+   public int hashCode() {
+      return Objects.hash(id);
+   }
 
 
-    public String getName() {
-        return name;
-    }
+   // TODO: Add getters for each field EXCEPT nextId. Add setters for each field EXCEPT nextID
+   //  and id.
 
-    public void setName(String name) {
-        this.name = name;
-    }
 
-    public Employer getEmployer() {
-        return employer;
-    }
+   public String getName() {
+      return name;
+   }
 
-    public void setEmployer(Employer employer) {
-        this.employer = employer;
-    }
+   public void setName(String name) {
+      this.name = name;
+   }
 
-    public Location getLocation() {
-        return location;
-    }
+   public Employer getEmployer() {
+      return employer;
+   }
 
-    public void setLocation(Location location) {
-        this.location = location;
-    }
+   public void setEmployer(Employer employer) {
+      this.employer = employer;
+   }
 
-    public PositionType getPositionType() {
-        return positionType;
-    }
+   public Location getLocation() {
+      return location;
+   }
 
-    public void setPositionType(PositionType positionType) {
-        this.positionType = positionType;
-    }
+   public void setLocation(Location location) {
+      this.location = location;
+   }
 
-    public CoreCompetency getCoreCompetency() {
-        return coreCompetency;
-    }
+   public PositionType getPositionType() {
+      return positionType;
+   }
 
-    public void setCoreCompetency(CoreCompetency coreCompetency) {
-        this.coreCompetency = coreCompetency;
-    }
+   public void setPositionType(PositionType positionType) {
+      this.positionType = positionType;
+   }
 
-    public int getId() {
-        return id;
-    }
+   public CoreCompetency getCoreCompetency() {
+      return coreCompetency;
+   }
 
-    @Override
-    public String toString() {
-        String employerValue = employer.getValue();
-        String locationValue = location.getValue();
-        String positionTypeValue = positionType.getValue();
-        String coreCompetencyValue = coreCompetency.getValue();
+   public void setCoreCompetency(CoreCompetency coreCompetency) {
+      this.coreCompetency = coreCompetency;
+   }
 
-        if(name.equals("")){
-          name = " Data not available";
+   public int getId() {
+      return id;
+   }
+
+   @Override
+   public String toString() {
+      String employerValue = employer.getValue();
+      String locationValue = location.getValue();
+      String positionTypeValue = positionType.getValue();
+      String coreCompetencyValue = coreCompetency.getValue();
+
+      if (EMPTY.equals(name)) {
+         name = " " + DATA_NOT_AVAILABLE;
       }
-      if(employerValue.equals("")){
-          employerValue = "Data not available";
+      if (EMPTY.equals(employerValue)) {
+         employerValue = DATA_NOT_AVAILABLE;
       }
-      if(locationValue.equals("")){
-          locationValue = "Data not available";
+      if (EMPTY.equals(locationValue)) {
+         locationValue = DATA_NOT_AVAILABLE;
       }
-      if(positionTypeValue.equals("")){
-          positionTypeValue = "Data not available";
+      if (EMPTY.equals(positionTypeValue)) {
+         positionTypeValue = DATA_NOT_AVAILABLE;
       }
 
-      if(coreCompetencyValue.equals("")){
-         coreCompetencyValue = "Data not available ";
+      if (EMPTY.equals(coreCompetencyValue)) {
+         coreCompetencyValue = DATA_NOT_AVAILABLE + " ";
       }
-      if(employerValue.equals("Data not available") && locationValue.equals("Data not available") && positionTypeValue.equals("Data not available")
-      && coreCompetencyValue.equals("Data not available ")){
-          return " OOPS! This job does not seem to exist. ";
-      }else {
-          return " ID: " + id + "\n" +
-                  " Name: " + name + '\n' +
-                  " Employer: " + employerValue + '\n' +
-                  " Location: " + locationValue + '\n' +
-                  " Position Type: " + positionTypeValue + '\n' +
-                  " Core Competency: " + coreCompetencyValue ;
+      if (DATA_NOT_AVAILABLE.equals(employerValue) &&
+              DATA_NOT_AVAILABLE.equals(locationValue) &&
+              DATA_NOT_AVAILABLE.equals(positionTypeValue) &&
+              (DATA_NOT_AVAILABLE + " ").equals(coreCompetencyValue)) {
+         return " OOPS! This job does not seem to exist. ";
+      } else {
+         return " ID: " + id + "\n" +
+                 " Name: " + name + '\n' +
+                 " Employer: " + employerValue + '\n' +
+                 " Location: " + locationValue + '\n' +
+                 " Position Type: " + positionTypeValue + '\n' +
+                 " Core Competency: " + coreCompetencyValue;
       }
-    }
+   }
 }
 
