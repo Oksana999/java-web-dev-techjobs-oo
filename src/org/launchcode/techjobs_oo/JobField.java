@@ -10,12 +10,12 @@ public abstract class JobField {
    private static int nextId = 1;
    private String value;
 
-   public JobField(){
+   public JobField() {
       id = nextId;
       nextId++;
    }
 
-   public JobField(String value){
+   public JobField(String value) {
       this();
       this.value = value;
    }
