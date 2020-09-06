@@ -54,4 +54,50 @@ public class JobTest {
 
    }
 
+   @Test
+   public void testToStringContainBlankLineBeforeAndAfter(){
+      test_job = new Job("", new Employer(""), new Location(""),
+              new PositionType(""), new CoreCompetency(""));
+      char[] chars = test_job.toString().toCharArray();
+     // char aChar = chars[chars.length-1];
+
+      assertEquals(" ", chars[0]+"");
+      assertEquals(" ", chars[chars.length-1]+"");
+   }
+
+   @Test
+   public void testToStringToContainLabelForEachField(){
+      assertTrue(test_job.toString().contains("ID"));
+      assertTrue(test_job.toString().contains("Name"));
+      assertTrue(test_job.toString().contains("Location"));
+      assertTrue(test_job.toString().contains("Position Type"));
+      assertTrue(test_job.toString().contains("Core Competency"));
+   }
+
+   @Test
+   public void testToStringFieldEmpty(){
+      test_job = new Job("", new Employer("ACME"), new Location("Desert"),
+              new PositionType("Quality control"), new CoreCompetency("Persistence"));
+      assertTrue( test_job.toString().contains("Data not available"));
+      test_job = new Job("Product tester", new Employer(""), new Location("Desert"),
+              new PositionType("Quality control"), new CoreCompetency("Persistence"));
+      assertTrue( test_job.toString().contains("Data not available"));
+      test_job = new Job("Product tester", new Employer("ACME"), new Location(""),
+              new PositionType("Quality control"), new CoreCompetency("Persistence"));
+      assertTrue( test_job.toString().contains("Data not available"));
+      test_job = new Job("Product tester", new Employer("ACME"), new Location("Desert"),
+              new PositionType(""), new CoreCompetency("Persistence"));
+      assertTrue( test_job.toString().contains("Data not available"));
+      test_job = new Job("Product tester", new Employer("ACME"), new Location("Desert"),
+              new PositionType("Quality control"), new CoreCompetency(""));
+      assertTrue( test_job.toString().contains("Data not available"));
+   }
+
+   @Test
+   public void testToStringAllFieldEmpty(){
+      test_job = new Job("", new Employer(""), new Location(""),
+              new PositionType(""), new CoreCompetency(""));
+      assertEquals(" OOPS! This job does not seem to exist. ", test_job.toString());
+   }
+
 }
