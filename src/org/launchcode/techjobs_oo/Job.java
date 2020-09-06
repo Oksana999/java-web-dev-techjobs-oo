@@ -124,11 +124,11 @@ public class Job {
           return " OOPS! This job does not seem to exist. ";
       }else {
           return " ID: " + id + "\n" +
-                  "Name: " + name + '\n' +
-                  "Employer: " + employerValue + '\n' +
-                  "Location: " + locationValue + '\n' +
-                  "Position Type: " + positionTypeValue + '\n' +
-                  "Core Competency: " + coreCompetencyValue ;
+                  " Name: " + name + '\n' +
+                  " Employer: " + employerValue + '\n' +
+                  " Location: " + locationValue + '\n' +
+                  " Position Type: " + positionTypeValue + '\n' +
+                  " Core Competency: " + coreCompetencyValue ;
       }
     }
 }
